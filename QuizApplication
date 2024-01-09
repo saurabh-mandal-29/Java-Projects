@@ -1,0 +1,269 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+// Define the Question class to represent a quiz question
+class Question {
+    private String questionText;
+    private List<String> options;
+    private int correctAnswerIndex;
+
+    // Constructor to initialize a Question object
+    public Question(String questionText, List<String> options, int correctAnswerIndex) {
+        this.questionText = questionText;
+        this.options = options;
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+
+    // Getter method for retrieving the question text
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    // Getter method for retrieving the list of options
+    public List<String> getOptions() {
+        return options;
+    }
+
+    // Getter method for retrieving the index of the correct answer
+    public int getCorrectAnswerIndex() {
+        return correctAnswerIndex;
+    }
+}
+
+// Define the Quiz class to represent a set of quiz questions
+class Quiz {
+    private List<Question> questions;
+
+    // Constructor to initialize a Quiz object with a list of questions
+    public Quiz(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    // Method to retrieve a specific question based on its index
+    public Question getQuestion(int index) {
+        return questions.get(index);
+    }
+
+    // Method to get the total number of questions in the quiz
+    public int getNumQuestions() {
+        return questions.size();
+    }
+}
+
+// Define the main class for the Online Quiz Application
+public class QuizApplication {
+    // The main method where the program execution begins
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Display menu for quiz selection
+        System.out.println("Welcome to the Interactive Quiz Application!");
+        int choice;
+
+        do {
+            // Display menu for quiz selection
+            System.out.println("\nSelect the type of quiz:");
+            System.out.println("1. Computer Networks (CN)");
+            System.out.println("2. Operating Systems (OS)");
+            System.out.println("3. Database Management Systems (DBMS)");
+            System.out.println("4. Object-Oriented Programming (OOPs)");
+            System.out.println("5. Exit");
+
+            // Get user choice
+            System.out.print("Enter your choice (1-5): ");
+            choice = scanner.nextInt();
+
+            if (choice >= 1 && choice <= 4) {
+                List<Question> questions = createQuizBasedOnChoice(choice);
+                Quiz quiz = new Quiz(questions);
+
+                // Take the quiz and get the user's score
+                int score = conductQuiz(quiz, scanner);
+
+                // Display the quiz completion message along with the user's score
+                System.out.println("\nQuiz completed! Your score: " + score + " out of " + quiz.getNumQuestions());
+            } else if (choice == 5) {
+                System.out.println("Exiting the program. Goodbye!");
+            } else {
+                System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+            }
+
+        } while (choice != 5);
+
+        // Close the Scanner to avoid resource leaks
+        scanner.close();
+    }
+
+    // Method to create a list of questions based on the user's quiz choice
+    private static List<Question> createQuizBasedOnChoice(int choice) {
+        List<Question> questions = new ArrayList<>();
+
+        // Add questions based on user choice
+        switch (choice) {
+            case 1:
+                questions.addAll(createCNQuiz());
+                break;
+            case 2:
+                questions.addAll(createOSQuiz());
+                break;
+            case 3:
+                questions.addAll(createDBMSQuiz());
+                break;
+            case 4:
+                questions.addAll(createOOPsQuiz());
+                break;
+            default:
+                System.out.println("Invalid choice. Exiting program.");
+                System.exit(0);
+        }
+
+        return questions;
+    }
+
+    // Method to create a Computer Networks (CN) Quiz
+   private static List<Question> createCNQuiz() {
+    List<Question> questions = new ArrayList<>();
+
+    questions.add(new Question("What does TCP stand for?", List.of("Transmission Control Protocol", "Transport Control Protocol", "Transfer Control Protocol", "Teleportation Control Protocol"), 1));
+    questions.add(new Question("What is the purpose of ARP (Address Resolution Protocol)?", List.of("Translate IP address to MAC address", "Translate MAC address to IP address", "Routing decision", "Error detection"), 1));
+    questions.add(new Question("What does the acronym HTTP stand for?", List.of("Hypertext Transfer Protocol", "Hypertext Transmission Protocol", "Hyperlink and Text Transfer Protocol", "Hypertext Telecommunication Protocol"), 0));
+    questions.add(new Question("Which layer of the OSI model is responsible for logical addressing?", List.of("Data Link Layer", "Network Layer", "Transport Layer", "Session Layer"), 1));
+    questions.add(new Question("What is the maximum addressable memory of IPv6?", List.of("32 bits", "64 bits", "128 bits", "256 bits"), 2));
+    questions.add(new Question("What is a DNS server used for?", List.of("Dynamic Network Services", "Domain Name System", "Data Naming Service", "Digital Network Security"), 1));
+    questions.add(new Question("What is the purpose of the subnet mask in IP networking?", List.of("To identify the network portion of an IP address", "To identify the host portion of an IP address", "To encrypt the IP address", "To control access to the network"), 0));
+    questions.add(new Question("Which of the following is a reliable transport protocol used in networking?", List.of("UDP (User Datagram Protocol)", "FTP (File Transfer Protocol)", "HTTP (Hypertext Transfer Protocol)", "TCP (Transmission Control Protocol)"), 3));
+    questions.add(new Question("What is the purpose of a firewall in networking?", List.of("To protect against viruses", "To filter and control network traffic", "To enhance network speed", "To provide physical security"), 1));
+    questions.add(new Question("In networking, what is the purpose of NAT (Network Address Translation)?", List.of("To translate network addresses to names", "To secure network communications", "To translate private IP addresses to a public IP address", "To perform network analysis"), 2));
+
+    return questions;
+}
+
+
+    // Method to create an Operating Systems (OS) Quiz
+    private static List<Question> createOSQuiz() {
+    List<Question> questions = new ArrayList<>();
+
+    questions.add(new Question("What is the main purpose of an operating system?", List.of("To provide a user interface", "To run applications", "To manage hardware resources", "To enhance computer performance"), 2));
+    questions.add(new Question("What is virtual memory?", List.of("Memory that doesn't exist", "Memory created by virtualization software", "A combination of RAM and disk space", "A type of cache memory"), 2));
+    questions.add(new Question("What is the role of the kernel in an operating system?", List.of("To manage user interfaces", "To execute application programs", "To manage system resources", "To provide security features"), 2));
+    questions.add(new Question("What is a file system?", List.of("A way to organize files in a library", "A data structure to organize and store files on a storage device", "A method to compress files", "A protocol for file sharing"), 1));
+    questions.add(new Question("What is the purpose of a device driver?", List.of("To install new devices", "To enhance device performance", "To translate user commands", "To enable communication between the operating system and hardware devices"), 3));
+    questions.add(new Question("What is a process in the context of an operating system?", List.of("A running application", "A series of system calls", "A set of files on the disk", "A collection of hardware components"), 0));
+    questions.add(new Question("What is multitasking in the context of operating systems?", List.of("Running multiple instances of the same application", "Running multiple applications simultaneously", "Running applications on different devices", "Running applications in a virtual environment"), 1));
+    questions.add(new Question("What is the purpose of the BIOS (Basic Input/Output System) in a computer?", List.of("To provide a graphical user interface", "To manage memory", "To initialize hardware and boot the operating system", "To control peripheral devices"), 2));
+    questions.add(new Question("What is a system call?", List.of("A call to customer support for technical issues", "A request made by an application to the operating system kernel", "A call to initiate a system update", "A call to activate security features"), 1));
+    questions.add(new Question("What is the difference between multiprocessing and multitasking?", List.of("They are the same", "Multiprocessing involves running multiple processes on multiple processors, while multitasking involves running multiple tasks on a single processor", "Multiprocessing involves running multiple tasks on a single processor, while multitasking involves running multiple processes on multiple processors", "There is no difference"), 1));
+
+    return questions;
+}
+
+
+    // Method to create a Database Management Systems (DBMS) Quiz
+    private static List<Question> createDBMSQuiz() {
+    List<Question> questions = new ArrayList<>();
+
+    questions.add(new Question("What does SQL stand for?", List.of("Structured Language", "Standardized Query Language", "Sequential Query Language", "Structured Query Language"), 3));
+    questions.add(new Question("What is normalization in DBMS?", List.of("A process of reducing redundancy", "A process of increasing redundancy", "A process of encrypting data", "A process of sorting data"), 0));
+    questions.add(new Question("What is the purpose of an index in a database?", List.of("To store primary keys", "To speed up data retrieval by providing a quick lookup mechanism", "To encrypt sensitive data", "To manage user access control"), 1));
+    questions.add(new Question("What is a foreign key in a relational database?", List.of("A key that is used for encryption", "A key that uniquely identifies each record in a table", "A key that links two tables by referencing the primary key of another table", "A key that is used for sorting data"), 2));
+    questions.add(new Question("What is the ACID properties in the context of database transactions?", List.of("A set of mathematical operations", "A set of data types", "A set of principles that ensure reliability in transactions (Atomicity, Consistency, Isolation, Durability)", "A set of indexing techniques"), 2));
+    questions.add(new Question("What is a stored procedure in a database?", List.of("A type of backup procedure", "A set of instructions to perform a specific task in the database", "A procedure for storing data securely", "A procedure for optimizing query performance"), 1));
+    questions.add(new Question("What is a view in a database?", List.of("A graphical representation of the database schema", "A virtual table based on the result of a SELECT query", "A type of index", "A mechanism to control user access"), 1));
+    questions.add(new Question("What is the difference between a database and a database management system (DBMS)?", List.of("They are the same", "A database is a collection of related data, while a DBMS is software that manages and organizes that data", "A DBMS is a collection of databases, while a database is software that manages data", "A database is used for backup purposes, while a DBMS is used for data retrieval"), 1));
+    questions.add(new Question("What is a transaction in a database?", List.of("A financial operation", "A set of related operations that are executed as a single unit of work", "A data manipulation operation", "A database design principle"), 1));
+    questions.add(new Question("What is the role of the SQL SELECT statement?", List.of("To insert data into a table", "To update data in a table", "To retrieve data from a table", "To delete data from a table"), 2));
+
+    return questions;
+}
+
+
+    // Method to create an Object-Oriented Programming (OOPs) Quiz
+   private static List<Question> createOOPsQuiz() {
+    List<Question> questions = new ArrayList<>();
+
+    questions.add(new Question("What is encapsulation in OOP?", List.of("Hiding the implementation details", "Exposing the implementation details", "Polymorphism", "Inheritance"), 0));
+    questions.add(new Question("What is the purpose of an abstract class?", List.of("To create objects directly", "To provide a base class for other classes", "To declare variables", "To perform mathematical operations"), 1));
+    questions.add(new Question("What is polymorphism in OOP?", List.of("The ability of an object to take multiple forms", "The process of hiding the implementation details", "The ability to create objects", "The ability to access variables from other classes"), 0));
+    questions.add(new Question("What is the difference between overloading and overriding in OOP?", List.of("They are the same", "Overloading involves providing multiple implementations for the same method with different parameters, while overriding involves providing a new implementation for a method in a subclass", "Overriding involves providing multiple implementations for the same method with different parameters, while overloading involves providing a new implementation for a method in a subclass", "Overloading and overriding both involve creating new methods in a class"), 1));
+    questions.add(new Question("What is a constructor in OOP?", List.of("A method that returns a value", "A method that performs a specific task", "A special method used to initialize objects", "A method used for code optimization"), 2));
+    questions.add(new Question("What is an interface in OOP?", List.of("A class that cannot be instantiated", "A collection of variables", "A way to achieve multiple inheritance in Java", "A blueprint for creating objects"), 3));
+    questions.add(new Question("What is the principle of inheritance in OOP?", List.of("The ability of an object to take multiple forms", "The process of hiding the implementation details", "The ability to create objects", "The reuse of code and creating a new class based on an existing class"), 3));
+    questions.add(new Question("What is the role of the 'super' keyword in Java?", List.of("To access static members of a class", "To call the superclass constructor or methods", "To declare a constant", "To create an instance of a class"), 1));
+    questions.add(new Question("What is a static method in OOP?", List.of("A method that cannot be overridden", "A method that does not have access to class variables", "A method that is not associated with an instance of a class", "A method that can be called only by objects of the same class"), 2));
+    questions.add(new Question("What is composition in OOP?", List.of("A way to create objects from classes", "A way to achieve multiple inheritance", "A way to create objects without using constructors", "A way to create complex objects by combining simpler ones"), 3));
+
+    return questions;
+}
+
+
+    // Method to conduct the quiz and return the user's score
+    private static int conductQuiz(Quiz quiz, Scanner scanner) {
+        int score = 0;
+        long startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < quiz.getNumQuestions(); i++) {
+            Question currentQuestion = quiz.getQuestion(i);
+
+            System.out.println("\nQuestion " + (i + 1) + ": " + currentQuestion.getQuestionText());
+
+            for (int j = 0; j < currentQuestion.getOptions().size(); j++) {
+                System.out.println((j + 1) + ". " + currentQuestion.getOptions().get(j));
+            }
+
+            int userAnswer = getUserAnswer(scanner, currentQuestion.getOptions().size());
+
+            if (userAnswer == currentQuestion.getCorrectAnswerIndex() + 1) {
+                System.out.println("Correct! You earned a point. Keep it up!");
+                score++;
+            } else {
+                System.out.println("Oops! That's incorrect. The correct answer is: " +
+                        currentQuestion.getOptions().get(currentQuestion.getCorrectAnswerIndex()));
+            }
+        }
+
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println("\nTotal time taken: " + totalTime / 1000 + " seconds");
+
+        return score;
+    }
+
+
+    // Add a timer for each question
+    private static int getUserAnswer(Scanner scanner, int numOptions) {
+        int userAnswer = 0;
+        boolean validInput = false;
+
+        // Timer for each question (15 seconds)
+        long startTime = System.currentTimeMillis();
+        long elapsedTime;
+
+        do {
+            System.out.print("Enter your answer (1-" + numOptions + "): ");
+
+            if (scanner.hasNextInt()) {
+                userAnswer = scanner.nextInt();
+
+                if (userAnswer >= 1 && userAnswer <= numOptions) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input. Please enter a number between 1 and " + numOptions + ".");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+            }
+
+            elapsedTime = System.currentTimeMillis() - startTime;
+            if (!validInput && elapsedTime > 15000) {
+                System.out.println("Time's up! Moving to the next question.");
+                break;
+            }
+
+        } while (!validInput && elapsedTime <= 15000);
+
+        return userAnswer;
+    }
+}
