@@ -21,6 +21,18 @@ web application development.
 - Explore basic error handling and user feedback.
 - Gain practical experience in Java programming, data structures, and algorithmic thinking.
 
+# Project 3 : Expense Tracker Application
+
+The Expense Tracker project aims to create a robust and user-friendly application that allows users
+to manage and monitor their expenses efficiently. This program will serve as a hands-on
+experience in applying Java programming concepts to develop a functional and practical software
+solution.
+> Project Objectives
+- Understanding Java Fundamentals: Strengthen your grasp on core Java concepts such as classes, objects, inheritance, and exception handling.
+- Data Handling: Implement data structures and algorithms to manage and organize expense data effectively.
+- User Interface Design: Develop a simple and intuitive user interface for users to input, edit, and view their expenses.
+- File Handling: Utilize file I/O operations to save and load expense data, ensuring persistence across sessions.
+- Exception Handling: Implement robust error handling to enhance the reliability of the application.
 
 
 
