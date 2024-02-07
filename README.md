@@ -1,5 +1,6 @@
 # Project 1 : Online Quiz Application
 
+Project Details:
 The Online Quiz Application is a console-based quiz system built in Java. Users can take a quiz by answering a series of questions and receive feedback on their performance. This project focuses on reinforcing fundamental Java concepts, implementing user input handling, using data structures, applying conditional statements, and gaining experience in planning, coding, and testing.
 > Project Objectives
 - Learn Java Basics: Reinforce understanding of core Java concepts, including variables, loops, and arrays.
@@ -10,6 +11,7 @@ The Online Quiz Application is a console-based quiz system built in Java. Users 
 
 # Project 2 : Link Shortener Application
 
+Project Details:
 The main goal of this project is to create a simple Link Shortener application using Java. A Link
 Shortener is a tool that takes a long URL and generates a short, unique identifier, allowing users to
 share concise links. This project will give you insights into data structures, algorithms, and basic
@@ -23,6 +25,7 @@ web application development.
 
 # Project 3 : Expense Tracker Application
 
+Project Details:
 The Expense Tracker project aims to create a robust and user-friendly application that allows users
 to manage and monitor their expenses efficiently. This program will serve as a hands-on
 experience in applying Java programming concepts to develop a functional and practical software
@@ -34,6 +37,18 @@ solution.
 - File Handling: Utilize file I/O operations to save and load expense data, ensuring persistence across sessions.
 - Exception Handling: Implement robust error handling to enhance the reliability of the application.
 
+# Project 4 : Text Adventure Game
+
+Project Details:
+-Objective: Develop a text-based adventure game using Java.
+-Description: You'll create an interactive game where users can make choices that lead to different outcomes. The story can be of your choice, but it should involve decision-making and branching paths.
+
+> Project Objectives 
+-The game should have a clear storyline with multiple decision points.
+-Users should be able to make choices by inputting their decisions.
+-The game should provide different outcomes based on user choices.
+Implement error handling for invalid inputs.
+-Ensure a user-friendly interface with clear instructions.
 
 
 
